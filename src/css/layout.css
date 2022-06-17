@@ -160,7 +160,7 @@ body .sp-preview{
 	top: 0;
 	width: 31px;
 	height: 30px;
-	background: url('images/logo.svg') no-repeat center center;
+	background: url('https://storage.googleapis.com/minipaint-icon-1/images/logo.svg') no-repeat center center;
 	background-size: auto 28px;
 	filter: var(--mobile-menu-toggle-filter);
 }
@@ -183,7 +183,7 @@ body .sp-preview{
 	outline: none;
 	cursor: pointer;
 	filter: var(--mobile-menu-toggle-filter);
-	background: url(images/icons/undo.svg) no-repeat center center;
+	background: url(https://storage.googleapis.com/minipaint-icon-1/images/icons/undo.svg) no-repeat center center;
 	background-size: auto 25px;
 	margin-left: 10px;
 }
@@ -302,25 +302,25 @@ body .sp-preview{
 /*
 IMPORTANT: any new icon should also must be added on /service-worker.js + its version should be updated !!!
  */
-.sidebar_left .select:after{ background-image: url('images/icons/select.svg'); }
-.sidebar_left .selection:after{ background-image: url('images/icons/selection.svg'); }
-.sidebar_left .brush:after{ background-image: url('images/icons/brush.svg'); }
-.sidebar_left .pencil:after{ background-image: url('images/icons/pencil.svg'); }
-.sidebar_left .pick_color:after{ background-image: url('images/icons/pick_color.svg'); }
-.sidebar_left .erase:after{ background-image: url('images/icons/erase.svg'); }
-.sidebar_left .magic_erase:after{ background-image: url('images/icons/magic_erase.svg'); }
-.sidebar_left .fill:after{ background-image: url('images/icons/fill.svg'); }
-.sidebar_left .media:after{ background-image: url('images/icons/media.svg'); }
-.sidebar_left .shape:after{ background-image: url('images/icons/shape.svg'); }
-.sidebar_left .text:after{ background-image: url('images/icons/text.svg'); background-size: 16px auto; }
-.sidebar_left .gradient:after{ background-image: url('images/icons/gradient.png'); background-size: 18px 12px; filter: none; }
-.sidebar_left .clone:after{ background-image: url('images/icons/clone.svg'); }
-.sidebar_left .crop:after{ background-image: url('images/icons/crop.svg'); }
-.sidebar_left .blur:after{ background-image: url('images/icons/blur.svg'); }
-.sidebar_left .sharpen:after{ background-image: url('images/icons/sharpen.svg'); }
-.sidebar_left .desaturate:after{ background-image: url('images/icons/desaturate.svg'); }
-.sidebar_left .bulge_pinch:after{ background-image: url('images/icons/bulge_pinch.svg'); }
-.sidebar_left .animation:after{ background-image: url('images/icons/animation.svg'); }
+.sidebar_left .select:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/select.svg'); }
+.sidebar_left .selection:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/selection.svg'); }
+.sidebar_left .brush:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/brush.svg'); }
+.sidebar_left .pencil:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/pencil.svg'); }
+.sidebar_left .pick_color:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/pick_color.svg'); }
+.sidebar_left .erase:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/erase.svg'); }
+.sidebar_left .magic_erase:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/magic_erase.svg'); }
+.sidebar_left .fill:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/fill.svg'); }
+.sidebar_left .media:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/media.svg'); }
+.sidebar_left .shape:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/shape.svg'); }
+.sidebar_left .text:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/text.svg'); background-size: 16px auto; }
+.sidebar_left .gradient:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/gradient.png'); background-size: 18px 12px; filter: none; }
+.sidebar_left .clone:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/clone.svg'); }
+.sidebar_left .crop:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/crop.svg'); }
+.sidebar_left .blur:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/blur.svg'); }
+.sidebar_left .sharpen:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/sharpen.svg'); }
+.sidebar_left .desaturate:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/desaturate.svg'); }
+.sidebar_left .bulge_pinch:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/bulge_pinch.svg'); }
+.sidebar_left .animation:after{ background-image: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/animation.svg'); }
 
 @media screen and (max-width:550px){
 	#sidebar_left{
@@ -452,7 +452,7 @@ IMPORTANT: any new icon should also must be added on /service-worker.js + its ve
 	bottom:0;
 	right:0;
 	filter: var(--menu-icons-filter);
-	background: url('images/icons/arrow-down.svg') no-repeat center center;
+	background: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/arrow-down.svg') no-repeat center center;
 	background-size: 12px auto;
 }
 .layers_list .visibility{
@@ -476,7 +476,7 @@ IMPORTANT: any new icon should also must be added on /service-worker.js + its ve
 	bottom:0;
 	right:0;
 	filter: var(--menu-icons-filter);
-	background: url('images/icons/view.svg') no-repeat center center;
+	background: url('https://storage.googleapis.com/minipaint-icon-1/images/icons/view.svg') no-repeat center center;
 	background-size: 18px auto;
 }
 .layers_list .visible{ opacity:0.4; }
@@ -487,7 +487,7 @@ IMPORTANT: any new icon should also must be added on /service-worker.js + its ve
 	width:12px;
 	height:19px;
 	margin-left: 5px;
-	background: transparent url(images/icons/delete.svg) no-repeat center center;
+	background: transparent url(https://storage.googleapis.com/minipaint-icon-1/images/icons/delete.svg) no-repeat center center;
 	background-size: 10px 10px;
 	border: none;
 	box-shadow: none;
@@ -550,7 +550,7 @@ IMPORTANT: any new icon should also must be added on /service-worker.js + its ve
 	top:0;
 	bottom:0;
 	right:0;
-	background: url(images/icons/refresh.svg) no-repeat center center;
+	background: url(https://storage.googleapis.com/minipaint-icon-1/images/icons/refresh.svg) no-repeat center center;
 	background-size: auto 14px;
 	filter: var(--menu-icons-filter);
 }
@@ -656,7 +656,7 @@ IMPORTANT: any new icon should also must be added on /service-worker.js + its ve
 	height: 100%;
 	position: absolute;
 	pointer-events: none;
-	/*background: url(images/icons/grid.png) repeat top left;*/
+	/*background: url(https://storage.googleapis.com/minipaint-icon-1/images/icons/grid.png) repeat top left;*/
 	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAQElEQVQ4T2N89+7dfwYigKCgIBGqGBgYRw3EGU6jYYgzaIZAsvn//z9ROeX9+/fE5ZRRA3GG02gY4s4pgz7ZAAAnSWvHPkHXaAAAAABJRU5ErkJggg==') repeat top left;
 	z-index:1;
 	image-rendering: pixelated; /* disable antialiasing */

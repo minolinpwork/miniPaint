@@ -406,7 +406,7 @@ class File_open_class {
 
 		this.Base_layers.debug_rendering = true;
 		
-		window.fetch("images/test-collection.json").then(function(response) {
+		window.fetch("https://storage.googleapis.com/minipaint-icon-1/images/test-collection.json").then(function(response) {
 			return response.json();
 		}).then(function(json) {
 			_this.load_json(json, false);
