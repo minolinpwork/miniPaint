@@ -435,6 +435,197 @@ class File_save_class {
 	 * @param {object} user_response parameters
 	 * @param {boolean} autoname if use name from layer, false by default
 	 */
+	export_blob_action(user_response, autoname, callbackAction) {
+		var fname = user_response.name;
+		if(autoname === true && user_response.layers == 'Selected'){
+			fname = config.layer.name;
+		}
+
+		var quality = parseInt(user_response.quality);
+		if (quality > 100 || quality < 1 || isNaN(quality) == true)
+			quality = 90;
+		quality = quality / 100;
+
+		var delay = parseInt(user_response.delay);
+		if (delay < 0 || isNaN(delay) == true)
+			delay = 400;
+
+		//detect type
+		var type = user_response.type;
+		var parts = type.split(" ");
+		type = parts[0];
+
+		//detect type from file name
+		for(var i in this.SAVE_TYPES) {
+			if (this.Helper.strpos(fname, '.' + i.toLowerCase()) !== false) {
+				type = i;
+			}
+		}
+
+		//save default type as cookie
+		if(this.Helper.getCookie('save_default') == '' || this.Helper.getCookie('save_default') != type){
+			this.Helper.setCookie('save_default', type);
+		}
+
+		if (type != 'JSON') {
+			//temp canvas
+			var canvas;
+			var ctx;
+			
+			//get data
+			if (user_response.layers == 'Selected' && type != 'GIF') {
+				canvas = this.Base_layers.convert_layer_to_canvas();
+				ctx = canvas.getContext("2d");
+			}
+			else {
+				canvas = document.createElement('canvas');
+				ctx = canvas.getContext("2d");
+				canvas.width = config.WIDTH;
+				canvas.height = config.HEIGHT;
+				this.disable_canvas_smooth(ctx);
+				
+				this.Base_layers.convert_layers_to_canvas(ctx, null, false);
+			}
+		}
+
+		if (type != 'JSON' && (type == 'JPG' || config.TRANSPARENCY == false)) {
+			//add white background
+			ctx.globalCompositeOperation = 'destination-over';
+			this.fillCanvasBackground(ctx, '#ffffff');
+			ctx.globalCompositeOperation = 'source-over';
+		}
+
+		if (type == 'PNG') {
+			//png - default format
+			if (this.Helper.strpos(fname, '.png') == false)
+				fname = fname + ".png";
+
+			//simple save example
+			//var link = document.createElement('a');
+			//link.download = fname;
+			//link.href = canvas.toDataURL();
+			//link.click();
+
+			//save using lib
+			canvas.toBlob(function (blob) {
+				callbackAction(blob, fname);
+			});
+		}
+		else if (type == 'JPG') {
+			//jpg
+			if (this.Helper.strpos(fname, '.jpg') == false)
+				fname = fname + ".jpg";
+
+			canvas.toBlob(function (blob) {
+				filesaver.saveAs(blob, fname);
+			}, "image/jpeg", quality);
+		}
+		else if (type == 'WEBP') {
+			//WEBP
+			if (this.Helper.strpos(fname, '.webp') == false)
+				fname = fname + ".webp";
+			var data_header = "image/webp";
+
+			//check support
+			if (this.check_format_support(canvas, data_header) == false)
+				return false;
+
+			canvas.toBlob(function (blob) {
+				filesaver.saveAs(blob, fname);
+			}, data_header, quality);
+		}
+		else if (type == 'AVIF') {
+			//AVIF
+			if (this.Helper.strpos(fname, '.avif') == false)
+				fname = fname + ".avif";
+			var data_header = "image/avif";
+
+			//check support
+			if (this.check_format_support(canvas, data_header) == false)
+				return false;
+
+			canvas.toBlob(function (blob) {
+				filesaver.saveAs(blob, fname);
+			}, data_header, quality);
+		}
+		else if (type == 'BMP') {
+			//bmp
+			if (this.Helper.strpos(fname, '.bmp') == false)
+				fname = fname + ".bmp";
+			var data_header = "image/bmp";
+
+			//check support
+			if (this.check_format_support(canvas, data_header) == false)
+				return false;
+
+			canvas.toBlob(function (blob) {
+				filesaver.saveAs(blob, fname);
+			}, data_header);
+		}
+		else if (type == 'TIFF') {
+			//tiff
+			if (this.Helper.strpos(fname, '.tiff') == false)
+				fname = fname + ".tiff";
+			var data_header = "image/tiff";
+
+			CanvasToTIFF.toBlob(canvas, function(blob) {
+				filesaver.saveAs(blob, fname);
+			}, data_header);
+		}
+		else if (type == 'JSON') {
+			//json - full data with layers
+			if (this.Helper.strpos(fname, '.json') == false)
+				fname = fname + ".json";
+
+			var data_json = this.export_as_json();
+
+			var blob = new Blob([data_json], {type: "text/plain"});
+			//var data = window.URL.createObjectURL(blob); //html5
+			filesaver.saveAs(blob, fname);
+		}
+		else if (type == 'GIF') {
+			//gif
+			var cores = navigator.hardwareConcurrency || 4;
+			var gif_settings = {
+				workers: cores,
+				quality: 10, //1-30, lower is better
+				repeat: 0,
+				width: config.WIDTH,
+				height: config.HEIGHT,
+				dither: 'FloydSteinberg-serpentine',
+				workerScript: './src/js/libs/gifjs/gif.worker.js',
+			};
+			if (config.TRANSPARENCY == true) {
+				gif_settings.transparent = 'rgba(0,0,0,0)';
+			}
+			var gif = new GIF(gif_settings);
+
+			//add frames
+			for (var i = 0; i < config.layers.length; i++) {
+				if (config.layers[i].visible == false)
+					continue;
+
+				ctx.clearRect(0, 0, config.WIDTH, config.HEIGHT);
+				if (config.TRANSPARENCY == false) {
+					this.fillCanvasBackground(ctx, '#ffffff');
+				}
+				this.Base_layers.convert_layers_to_canvas(ctx, config.layers[i].id, false);
+
+				gif.addFrame(ctx, {copy: true, delay: delay});
+			}
+			gif.render();
+			gif.on('finished', function (blob) {
+				filesaver.saveAs(blob, fname);
+			});
+		}
+	}
+	
+	/**
+	 * saves data in requested way
+	 * 
+	 * @param {object} user_response parameters
+	 * @param {boolean} autoname if use name from layer, false by default
+	 */
 	save_action(user_response, autoname) {
 		var fname = user_response.name;
 		if(autoname === true && user_response.layers == 'Selected'){
