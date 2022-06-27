@@ -593,7 +593,7 @@ class File_save_class {
 				width: config.WIDTH,
 				height: config.HEIGHT,
 				dither: 'FloydSteinberg-serpentine',
-				workerScript: './src/js/libs/gifjs/gif.worker.js',
+				workerScript: 'https://storage.googleapis.com/minipaint-icon-1/src/js/libs/gifjs/gif.worker.js',
 			};
 			if (config.TRANSPARENCY == true) {
 				gif_settings.transparent = 'rgba(0,0,0,0)';
@@ -615,7 +615,7 @@ class File_save_class {
 			}
 			gif.render();
 			gif.on('finished', function (blob) {
-				filesaver.saveAs(blob, fname);
+				callbackAction.saveAs(blob, fname);
 			});
 		}
 	}
