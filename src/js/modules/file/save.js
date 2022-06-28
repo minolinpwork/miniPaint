@@ -593,7 +593,7 @@ class File_save_class {
 				width: config.WIDTH,
 				height: config.HEIGHT,
 				dither: 'FloydSteinberg-serpentine',
-				workerScript: 'https://storage.googleapis.com/minipaint-icon-1/src/js/libs/gifjs/gif.worker.js',
+				workerScript: '/src/js/libs/gifjs/gif.worker.js',
 			};
 			if (config.TRANSPARENCY == true) {
 				gif_settings.transparent = 'rgba(0,0,0,0)';
@@ -784,7 +784,7 @@ class File_save_class {
 				width: config.WIDTH,
 				height: config.HEIGHT,
 				dither: 'FloydSteinberg-serpentine',
-				workerScript: 'https://storage.googleapis.com/minipaint-icon-1/src/js/libs/gifjs/gif.worker.js',
+				workerScript: '/src/js/libs/gifjs/gif.worker.js',
 			};
 			if (config.TRANSPARENCY == true) {
 				gif_settings.transparent = 'rgba(0,0,0,0)';
